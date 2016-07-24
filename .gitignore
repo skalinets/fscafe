@@ -1,3 +1,11 @@
 paket.exe
 .vs
 paket.targets
+obj/
+bin/
+packages/
+.fake/
+build/
+BuildTests/
+_NCrunch*
+*.ncrunchsolution.user
