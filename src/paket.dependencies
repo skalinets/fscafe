@@ -1,5 +1,6 @@
 redirects: on
 source https://www.nuget.org/api/v2
+nuget chessie
 nuget FSharp.Core
 nuget FAKE
 nuget fsunit.xunit
