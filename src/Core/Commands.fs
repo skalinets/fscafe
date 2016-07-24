@@ -3,7 +3,7 @@
 open Domain
 open System
 
-type Coomand = 
+type Comand = 
     | OpenTab of Tab
     | PlaceOrder of Order
     | ServeDrink of Drink * Guid
