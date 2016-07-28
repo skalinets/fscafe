@@ -1,5 +1,6 @@
 ﻿module TTests
 
+open Chessie.ErrorHandling
 open Xunit
 open FsUnit.Xunit
 open Commands
@@ -8,18 +9,39 @@ open States
 open Events
 open CommandHandlers
 open System
+open Errors
 
 let Given (state : State) = state
 
 let When command state = (command, state)
 
-let ThenStateShouldBe expectedState (command, state) = 
-    let actualState, events = evolve state command
-    actualState |> should equal expectedState
-    events
+let failAssert msg = Assert.True (false, msg)
+    
+
+let ThenStateShouldBe expectedState (command, state) =
+    match evolve state command with 
+    | Ok((actualState, events), _) ->
+        actualState |> should equal expectedState
+        events |> Some
+    | Bad errs ->
+        let msg = sprintf "Expected : %A, But Actual : %A" expectedState errs.Head
+        failAssert msg
+        None
 
 let WithEvents expectedEvents actualEvents =
-    actualEvents |> should equal expectedEvents
+    match actualEvents with 
+    | Some (actualEvents) -> 
+        actualEvents |> should equal expectedEvents
+    | None -> None |> should equal expectedEvents
+
+let ShouldFailWith (expectedError : Error) (command, state) =
+    match evolve state command with
+    | Bad errs -> errs.Head |> should equal expectedError
+    | Ok (r,_) -> 
+        sprintf "Expected : %A, But Actual : %A" expectedError r
+        |> failAssert 
+        
+    
 
 [<Fact>]
 let just_test_it () = 1 |> should equal 1
@@ -33,5 +55,11 @@ let ``Can Open a new Tab`` () =
     |> ThenStateShouldBe (OpenedTab tab)
     |> WithEvents [TabOpened tab]
 
-type Class1() = 
-    member this.X = "F#"
+[<Fact>]
+let ``Cannot open an already opened tab`` () =
+    let tab = {Id = Guid.NewGuid(); TableNumber = 1}
+
+    Given (OpenedTab tab)
+    |> When (OpenTab tab)
+    |> ShouldFailWith TabAlreadyOpened
+
