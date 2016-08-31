@@ -80,7 +80,14 @@
   -->
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="DslTests.fs" />
+    <Compile Include="TestDsl.fs" />
+    <Compile Include="TestData.fs" />
+    <Compile Include="OpenTabTests.fs" />
+    <Compile Include="PlaceOrderTests.fs" />
+    <Compile Include="ServeDrinkTests.fs" />
+    <Compile Include="PrepareFoodTests.fs" />
+    <Compile Include="ServeFoodTests.fs" />
+    <Compile Include="CloseTabTests.fs" />
     <None Include="Script.fsx" />
     <Content Include="App.config" />
   </ItemGroup>

@@ -29,7 +29,31 @@ type Order = {
 type InProgressOrder = {
     PlacedOrder : Order
     ServedDrinks : Drink list
-    ServerdFoods : Food list
+    ServedFoods : Food list
     PreparedFoods : Food list
 }
+
+
+let foodPrice (Food food) = food.Price
+let drinkPrice (Drink drink) = drink.Price
+
+let orderAmount order =
+    let foodAmount = order.Foods |> List.map foodPrice |> List.sum
+    let drinksAmount = order.Drinks|> List.map drinkPrice |> List.sum
+    foodAmount + drinksAmount
+
+let payment order = {Tab = order.Tab; Amount = orderAmount order}
+
+let nonServedFoods ipo =
+    List.except ipo.ServedFoods ipo.PlacedOrder.Foods
+       
+let nonServedDrinks ipo =
+    ipo.PlacedOrder.Drinks 
+    |> List.except ipo.ServedDrinks
+
+let isServingDrinkCompletesIPOrder ipo drink =
+    List.isEmpty (nonServedFoods ipo) && (nonServedDrinks ipo) = [drink]
+
+let isServingFoodCompletesIPOrder ipo food =
+    List.isEmpty (nonServedDrinks ipo) && (nonServedFoods ipo) = [food]
 

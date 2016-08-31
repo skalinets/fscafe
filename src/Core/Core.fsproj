@@ -58,11 +58,15 @@
     <Compile Include="Library1.fs" />
     <None Include="Script.fsx" />
     <Content Include="App.config" />
-    <Compile Include="Errors.fs" />
     <Compile Include="Domain.fs" />
+    <Compile Include="Errors.fs" />
     <Compile Include="Events.fs" />
     <Compile Include="Commands.fs" />
     <Compile Include="States.fs" />
+    <Compile Include="ReadModel.fs" />
+    <Compile Include="Projections.fs" />
+    <Compile Include="Queries.fs" />
+    <Compile Include="EventStore.fs" />
     <Compile Include="CommandHandlers.fs" />
   </ItemGroup>
   <ItemGroup>
