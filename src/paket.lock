@@ -72,6 +72,7 @@ NUGET
       System.Threading.Timer (>= 4.0.1) - framework: >= netstandard12
       System.Xml.ReaderWriter (>= 4.0.11) - framework: >= netstandard10
       System.Xml.XDocument (>= 4.0.11) - framework: >= netstandard10
+    NEventStore (5.2)
     runtime.native.System (4.0) - framework: >= netstandard16
       Microsoft.NETCore.Platforms (>= 1.0.1)
       Microsoft.NETCore.Targets (>= 1.0.1)

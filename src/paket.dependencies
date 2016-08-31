@@ -4,4 +4,5 @@ nuget chessie
 nuget FSharp.Core
 nuget FAKE
 nuget fsunit.xunit
+nuget neventstore
 nuget xunit.runner.console
