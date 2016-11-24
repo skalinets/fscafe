@@ -6,6 +6,7 @@ bin/
 packages/
 .fake/
 build/
+tests/
 BuildTests/
 _NCrunch*
 *.ncrunchsolution.user
