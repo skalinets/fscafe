@@ -5,7 +5,7 @@ open Domain
 open States
 open System
 
-type TableQueirs = {
+type TableQueries = {
     GetTables : unit -> Async<Table list>
 }
 
@@ -15,7 +15,7 @@ type ToDoQueries = {
     GetCashierToDos : unit -> Async<Payment list>
 }
 
-type Queris = {
-    Table : TableQueirs
+type Queries = {
+    Table : TableQueries
     ToDo : ToDoQueries
 }

@@ -31,10 +31,10 @@ let ``Can serve only prepared food`` () =
 
 [<Fact>]
 let ``Can not serve non-ordered food`` () =  
-    let order = {order with Foods = [salad;]}  
-    let orderInProgress = { Place order with PreparedFoods = [salad] }
-    Given (OrderInProgress orderInProgress)  
-    |> When (ServeFood (pizza, order.Tab.Id))  
+    let o = {order with Foods = [salad;]}  
+    let oip = { Place o with PreparedFoods = [salad] }
+    Given (OrderInProgress oip)  
+    |> When (ServeFood (pizza, o.Tab.Id))  
     |> ShouldFailWith (CanNotServeNonOrderedFood pizza)
 
 [<Fact>] 

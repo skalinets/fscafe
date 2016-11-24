@@ -32,7 +32,6 @@ let toErrorString = function
     | CanNotServeNonOrderedFood (Food item) ->  sprintf "Food %s(%d) is not ordered" item.Name item.MenuNumber 
     | CanNotPrepareNonOrderedFood (Food item) ->  sprintf "Food %s(%d) is not ordered" item.Name item.MenuNumber 
     | CanNotServeNonPreparedFood (Food item) ->  sprintf "Food %s(%d) is not prepared yet" item.Name item.MenuNumber
-
     | CanNotPrepareAlreadyPreparedFood (Food item) ->  sprintf "Food %s(%d) is already prepared" item.Name item.MenuNumber 
     | CanNotServeAlreadyServedFood (Food item) ->  sprintf "Food %s(%d) is already served" item.Name item.MenuNumber 
     | CanNotServeWithClosedTab -> "Cannot Serve as Tab is Closed" 

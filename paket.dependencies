@@ -6,3 +6,4 @@ nuget FAKE
 nuget fsunit.xunit
 nuget neventstore
 nuget xunit.runner.console
+nuget FSharp.Data

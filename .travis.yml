@@ -1,0 +1,7 @@
+before_install:
+ - chmod +x ./build.sh
+language: csharp
+script:
+- ./build.sh RunUnitTests
+mono:
+- latest

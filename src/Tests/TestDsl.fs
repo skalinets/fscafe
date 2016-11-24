@@ -7,14 +7,16 @@ open Chessie.ErrorHandling
 open FsUnit.Xunit
 open Errors
 
-let Given (state : State) = state
-
-let When command state = (command, state)
 
 let failAssert = failwith
 
 let expectedActual a b = sprintf "\n ************** Expected > \n %A \n ************** Actual > \n %A" a b
 
+
+
+let Given (state : State) = state
+
+let When command state = (command, state)
 
 let ThenStateShouldBe expectedState (command, state) =
     match evolve state command with 
