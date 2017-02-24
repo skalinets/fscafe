@@ -10,6 +10,7 @@ type TableActions = {
     CloseTab : Tab -> Async<unit>
 }
 
+
 type ChefActions = {
     AddFoodsToPrepare : Guid -> Food list -> Async<unit>
     RemoveFood : Guid -> Food -> Async<unit>

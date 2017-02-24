@@ -6,6 +6,8 @@ open ReadModel
 open Projections
 open Queries
 
+let a = 4
+
 let private tables =
     let dict = new Dictionary<int, Table> ()
     dict.Add(1, {Number = 1; Waiter = "X"; Status = Closed})
@@ -15,7 +17,7 @@ let private tables =
 
 let private openTab tab =
     let tableNumber = tab.TableNumber
-    let table = tables.[tableNumber]
+    let table = tables.[tableNumber] 
     tables.[tableNumber] <- {table with Status = Open(tab.Id)}
     async.Return ()
 
@@ -23,7 +25,7 @@ let private closeTab tab =
     let tableNumber = tab.TableNumber
     let table = tables.[tableNumber]
     tables.[tableNumber] <- {table with Status = Closed}
-    async.Return ()
+    async.Return ();
 
 let getTableByTabId tabId =
     tables.Values 
@@ -32,6 +34,13 @@ let getTableByTabId tabId =
             match t.Status with
             | (Open id) | (InService id) -> id = tabId 
             | _ -> false)
+
+let getTableByTableNumber tableNumber =
+    if tables.ContainsKey tableNumber then 
+        tables.[tableNumber] |> Some 
+    else
+        None
+    |> async.Return
 
 let private receiveOrder tabId =
     match getTableByTabId tabId with
@@ -54,6 +63,7 @@ let getTables () =
 
 let tableQueries  = {
     GetTables = getTables
+    GetTableByTableNumber = getTableByTableNumber
 }
     
     
